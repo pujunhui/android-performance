@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/ll_out"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="5dp">
 
     <com.facebook.drawee.view.SimpleDraweeView
-        android:id="@+id/iv_news"
+        android:id="@+id/image_iv"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:scaleType="fitXY"
@@ -16,23 +15,22 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tv_title"
+        android:id="@+id/title_tv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:paddingLeft="10dp"
-        android:textSize="20dp"
-        app:layout_constraintLeft_toRightOf="@id/iv_news"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toRightOf="@id/image_iv"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@id/iv_news" />
+        app:layout_constraintTop_toTopOf="@id/image_iv" />
 
     <TextView
+        android:id="@+id/type_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="3dp"
-        android:text="来自NBA官网"
-        android:textSize="14dp"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_news" />
-
-</android.support.constraint.ConstraintLayout>
+        app:layout_constraintTop_toBottomOf="@id/image_iv" />
+</androidx.constraintlayout.widget.ConstraintLayout>

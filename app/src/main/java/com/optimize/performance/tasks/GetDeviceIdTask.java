@@ -3,7 +3,6 @@ package com.optimize.performance.tasks;
 import android.content.Context;
 import android.telephony.TelephonyManager;
 
-import com.facebook.drawee.backends.pipeline.Fresco;
 import com.optimize.performance.PerformanceApp;
 import com.optimize.performance.launchstarter.task.Task;
 

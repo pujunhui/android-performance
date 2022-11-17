@@ -10,7 +10,7 @@ public class DispatcherLog {
         if (!sDebug) {
             return;
         }
-        Log.i("task",msg);
+        Log.i("task", msg);
     }
 
     public static boolean isDebug() {

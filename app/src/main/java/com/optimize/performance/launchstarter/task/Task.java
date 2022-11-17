@@ -100,7 +100,8 @@ public abstract class Task implements ITask {
     }
 
     @Override
-    public void setTaskCallBack(TaskCallBack callBack) {}
+    public void setTaskCallBack(TaskCallBack callBack) {
+    }
 
     @Override
     public boolean needCall() {

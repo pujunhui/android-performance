@@ -13,12 +13,12 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class ThreadPoolUtils {
 
-    private int CPUCOUNT = Runtime.getRuntime().availableProcessors();
+    private final int CPUCOUNT = Runtime.getRuntime().availableProcessors();
 
-    private ThreadPoolExecutor cpuExecutor = new ThreadPoolExecutor(CPUCOUNT, CPUCOUNT,
+    private final ThreadPoolExecutor cpuExecutor = new ThreadPoolExecutor(CPUCOUNT, CPUCOUNT,
             30, TimeUnit.SECONDS, new LinkedBlockingDeque<Runnable>(), sThreadFactory);
 
-    private ThreadPoolExecutor iOExecutor = new ThreadPoolExecutor(64, 64,
+    private final ThreadPoolExecutor iOExecutor = new ThreadPoolExecutor(64, 64,
             30, TimeUnit.SECONDS, new LinkedBlockingDeque<Runnable>(), sThreadFactory);
 
     private static final ThreadFactory sThreadFactory = new ThreadFactory() {
@@ -33,7 +33,7 @@ public class ThreadPoolUtils {
         return sService;
     }
 
-    private static ExecutorService sService = Executors.newFixedThreadPool(5, new ThreadFactory() {
+    private static final ExecutorService sService = Executors.newFixedThreadPool(5, new ThreadFactory() {
         @Override
         public Thread newThread(Runnable r) {
             // 创建线程命名
@@ -43,6 +43,4 @@ public class ThreadPoolUtils {
             return thread;
         }
     });
-
-
 }

@@ -2,8 +2,9 @@ package com.optimize.performance.launchstarter;
 
 import android.content.Context;
 import android.os.Looper;
-import android.support.annotation.UiThread;
 import android.util.Log;
+
+import androidx.annotation.UiThread;
 
 import com.optimize.performance.launchstarter.sort.TaskSortUtil;
 import com.optimize.performance.launchstarter.stat.TaskStat;
@@ -127,7 +128,7 @@ public class TaskDispatcher {
         mStartTime = System.currentTimeMillis();
         for (Task task : mMainThreadTasks) {
             long time = System.currentTimeMillis();
-            new DispatchRunnable(task,this).run();
+            new DispatchRunnable(task, this).run();
             DispatcherLog.i("real main " + task.getClass().getSimpleName() + " cost   " +
                     (System.currentTimeMillis() - time));
         }
@@ -203,7 +204,7 @@ public class TaskDispatcher {
             }
         } else {
             // 直接发，是否执行取决于具体线程池
-            Future future = task.runOn().submit(new DispatchRunnable(task,this));
+            Future future = task.runOn().submit(new DispatchRunnable(task, this));
             mFutures.add(future);
         }
     }
@@ -212,7 +213,7 @@ public class TaskDispatcher {
         if (ifNeedWait(task)) {
             mNeedWaitCount.getAndIncrement();
         }
-        task.runOn().execute(new DispatchRunnable(task,this));
+        task.runOn().execute(new DispatchRunnable(task, this));
     }
 
     @UiThread

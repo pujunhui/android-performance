@@ -11,8 +11,6 @@ import org.json.JSONObject;
 
 public class SuperHandler extends Handler {
 
-    private long mStartTime = System.currentTimeMillis();
-
     public SuperHandler() {
         super(Looper.myLooper(), null);
     }
@@ -40,21 +38,21 @@ public class SuperHandler extends Handler {
 
     @Override
     public void dispatchMessage(Message msg) {
-        mStartTime = System.currentTimeMillis();
+        long startTime = System.currentTimeMillis();
         super.dispatchMessage(msg);
 
         if (GetDetailHandlerHelper.getMsgDetail().containsKey(msg)
                 && Looper.myLooper() == Looper.getMainLooper()) {
             JSONObject jsonObject = new JSONObject();
             try {
-                jsonObject.put("Msg_Cost", System.currentTimeMillis() - mStartTime);
+                jsonObject.put("Msg_Cost", System.currentTimeMillis() - startTime);
                 jsonObject.put("MsgTrace", msg.getTarget() + " " + GetDetailHandlerHelper.getMsgDetail().get(msg));
 
                 LogUtils.i("MsgDetail " + jsonObject.toString());
                 GetDetailHandlerHelper.getMsgDetail().remove(msg);
             } catch (Exception e) {
+                e.printStackTrace();
             }
         }
     }
-
 }

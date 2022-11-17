@@ -16,7 +16,7 @@ public class NoNetInterceptor implements Interceptor {
     public Response intercept(Chain chain) throws IOException {
         Request request = chain.request();
         Request.Builder builder = request.newBuilder();
-        if(!Utils.isNetworkConnected(PerformanceApp.getApplication())){
+        if (!Utils.isNetworkConnected(PerformanceApp.getApplication())) {
             builder.cacheControl(CacheControl.FORCE_CACHE);
         }
         return chain.proceed(builder.build());

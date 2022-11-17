@@ -2,7 +2,8 @@ package com.optimize.performance.launchstarter.task;
 
 import android.os.Looper;
 import android.os.Process;
-import android.support.v4.os.TraceCompat;
+
+import androidx.core.os.TraceCompat;
 
 import com.optimize.performance.launchstarter.TaskDispatcher;
 import com.optimize.performance.launchstarter.stat.TaskStat;
@@ -19,7 +20,8 @@ public class DispatchRunnable implements Runnable {
     public DispatchRunnable(Task task) {
         this.mTask = task;
     }
-    public DispatchRunnable(Task task,TaskDispatcher dispatcher) {
+
+    public DispatchRunnable(Task task, TaskDispatcher dispatcher) {
         this.mTask = task;
         this.mTaskDispatcher = dispatcher;
     }
@@ -55,7 +57,7 @@ public class DispatchRunnable implements Runnable {
 
             TaskStat.markTaskDone();
             mTask.setFinished(true);
-            if(mTaskDispatcher != null){
+            if (mTaskDispatcher != null) {
                 mTaskDispatcher.satisfyChildren(mTask);
                 mTaskDispatcher.markTaskDone(mTask);
             }

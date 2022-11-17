@@ -48,7 +48,7 @@ public class CustomTextView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        if(mStaticLayout != null){
+        if (mStaticLayout != null) {
             canvas.save();
             canvas.translate(getPaddingLeft(), getPaddingTop());
             mStaticLayout.draw(canvas);

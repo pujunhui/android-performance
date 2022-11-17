@@ -16,7 +16,7 @@ public class DelayInitDispatcher {
     private MessageQueue.IdleHandler mIdleHandler = new MessageQueue.IdleHandler() {
         @Override
         public boolean queueIdle() {
-            if(mDelayTasks.size()>0){
+            if (mDelayTasks.size() > 0) {
                 Task task = mDelayTasks.poll();
                 new DispatchRunnable(task).run();
             }
@@ -24,12 +24,12 @@ public class DelayInitDispatcher {
         }
     };
 
-    public DelayInitDispatcher addTask(Task task){
+    public DelayInitDispatcher addTask(Task task) {
         mDelayTasks.add(task);
         return this;
     }
 
-    public void start(){
+    public void start() {
         Looper.myQueue().addIdleHandler(mIdleHandler);
     }
 

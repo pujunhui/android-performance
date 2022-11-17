@@ -1,7 +1,7 @@
 package com.optimize.performance.launchstarter.sort;
 
-import android.support.annotation.NonNull;
-import android.support.v4.util.ArraySet;
+import androidx.annotation.NonNull;
+import androidx.collection.ArraySet;
 
 import com.optimize.performance.launchstarter.task.Task;
 import com.optimize.performance.launchstarter.utils.DispatcherLog;

@@ -1,23 +1,28 @@
-apply plugin: 'com.android.application'
-apply plugin: 'android-aspectjx'
-apply plugin: 'me.ele.lancet'
+plugins {
+    id 'com.android.application'
+    id 'io.github.wurensen.android-aspectjx'
+}
 
 android {
-    compileSdkVersion 28
+    namespace 'com.optimize.performance'
+    compileSdk 33
+
     defaultConfig {
         applicationId "com.optimize.performance"
-        minSdkVersion 16
-        targetSdkVersion 21
+        minSdk 21
+        targetSdk 33
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables {
+            useSupportLibrary true
+        }
         multiDexEnabled true
-
         manifestPlaceholders = [
-                JPUSH_PKGNAME : applicationId,
-                JPUSH_APPKEY : "你的 Appkey ", //JPush 上注册的包名对应的 Appkey.
-                JPUSH_CHANNEL : "developer-default", //暂时填写默认值即可.
+                JPUSH_PKGNAME: applicationId,
+                JPUSH_APPKEY : "4931f5bda2543167f162df90", //JPush 上注册的包名对应的 Appkey.
+                JPUSH_CHANNEL: "developer-default", //暂时填写默认值即可.
         ]
     }
     buildTypes {
@@ -26,82 +31,101 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+aspectjx {
+    // 排除所有package路径中包含`androidx`的class文件及库（jar文件）
+    exclude 'androidx', 'kotlin','com.facebook','com.squareup','com.google'
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:appcompat-v7:28.0.0'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    implementation 'com.android.support:recyclerview-v7:28.0.0'
-    implementation 'com.android.support:multidex:1.0.3'
+    implementation 'androidx.appcompat:appcompat:1.4.1'
+    implementation 'com.google.android.material:material:1.5.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
+    implementation 'androidx.multidex:multidex:2.0.1'
 
-    implementation  'com.umeng.umsdk:analytics:7.5.4'
-    implementation  'com.umeng.umsdk:common:1.5.4'
+    implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
+    implementation 'io.reactivex.rxjava3:rxjava:3.1.5'
 
-    implementation 'com.tencent.bugly:crashreport:latest.release' //其中latest.release指代最新Bugly SDK版本号，也可以指定明确的版本号，例如2.1.9
-    implementation 'com.tencent.bugly:nativecrashreport:latest.release' //其中latest.release指代最新Bugly NDK版本号，也可以指定明确的版本号，例如3.0
-    implementation 'top.zibin:Luban:1.1.8'
+    //retrofit2
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava3:2.9.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.10.0'
 
-    implementation 'com.facebook.fresco:fresco:1.11.0'
-    implementation 'com.facebook.fresco:animated-gif:1.11.0'
-    implementation 'com.facebook.fresco:animated-webp:1.11.0'
-    implementation 'com.facebook.fresco:webpsupport:1.11.0'
-    implementation 'com.facebook.fresco:drawee:1.11.0'
+    //paging 3
+    implementation "androidx.paging:paging-runtime:3.1.1"
+    implementation "androidx.paging:paging-rxjava3:3.1.1"
 
-    //高德地图 3D地图so及jar
-    implementation 'com.amap.api:3dmap:latest.integration'
-    //高德地图 定位功能
-    implementation 'com.amap.api:location:latest.integration'
-    //高德地图 搜索功能
-    implementation 'com.amap.api:search:latest.integration'
-
-    // 极光推送
-    implementation 'cn.jiguang.sdk:jpush:3.1.7'
-    implementation 'cn.jiguang.sdk:jcore:1.2.5'
-
-    // https://github.com/apache/incubator-weex
-    // 用于构建移动跨平台UI的框架
-    implementation 'com.taobao.android:weex_sdk:0.18.0'
-
-    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
-    implementation 'org.ligboy.retrofit2:converter-fastjson-android:2.1.0'
-    implementation 'com.squareup.okhttp3:logging-interceptor:3.6.0'
-
-    // 调试工具
-    implementation 'com.facebook.stetho:stetho:1.5.0'
-    implementation 'com.facebook.stetho:stetho-okhttp3:1.5.0'
-
-    // AOP
-    implementation 'org.aspectj:aspectjrt:1.8.+'
-
-    // 运行时 AOP Hook框架
-    implementation 'me.weishu:epic:0.3.6'
+    //glide
+    implementation 'com.github.bumptech.glide:glide:4.14.2'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.14.2'
 
     // 异步加载布局
-    implementation 'com.android.support:asynclayoutinflater:28.0.0-alpha1'
-
-    // https://github.com/iReaderAndroid/X2C
-    // Increase layout loading speed 200%
-    annotationProcessor 'com.zhangyue.we:x2c-apt:1.1.2'
-    implementation 'com.zhangyue.we:x2c-lib:1.0.6'
-
-    // 微信基于mmap的高性能通用 key-value 组件
-    implementation 'com.tencent:mmkv:1.0.17'
-
-    // HTTPDNS是面向移动开发者推出的一款域名解析产品，具有域名防劫持、精准调度的特性
-    compile ('com.aliyun.ams:alicloud-android-httpdns:1.1.7@aar') {
-        transitive true
-    }
+    implementation 'androidx.asynclayoutinflater:asynclayoutinflater:1.0.0'
+    implementation 'androidx.tracing:tracing:1.1.0'
 
     // AOP
-    provided 'me.ele:lancet-base:1.0.4'
+    implementation 'org.aspectj:aspectjrt:1.9.9.1'
+
+    implementation 'com.umeng.umsdk:common:9.5.0'
+    implementation 'com.umeng.umsdk:asms:1.4.1'
+
+    implementation 'com.tencent.bugly:crashreport:4.1.9'
+    //其中latest.release指代最新Bugly SDK版本号，也可以指定明确的版本号，例如2.1.9
+    implementation 'top.zibin:Luban:1.1.8'
+
+    implementation 'com.facebook.fresco:fresco:2.6.0'
+    implementation 'com.facebook.fresco:animated-gif:2.6.0'
+    implementation 'com.facebook.fresco:animated-webp:2.6.0'
+    implementation 'com.facebook.fresco:webpsupport:2.6.0'
+    implementation 'com.facebook.fresco:drawee:2.6.0'
+
+    //高德地图
+    implementation 'com.amap.api:3dmap:9.2.0'
+    implementation 'com.amap.api:location:6.1.0'
+    implementation 'com.amap.api:search:9.2.0'
+
+    // 极光推送
+    implementation 'cn.jiguang.sdk:jcore:3.3.2'
+    implementation 'cn.jiguang.sdk:jpush:4.8.1'
+
+    // 调试工具
+    implementation 'com.facebook.stetho:stetho:1.6.0'
+    implementation 'com.facebook.stetho:stetho-okhttp3:1.6.0'
+//
+//    // 运行时 AOP Hook框架
+    implementation 'me.weishu:epic:1.0.0'
+
+//
+//    // https://github.com/iReaderAndroid/X2C
+//    // Increase layout loading speed 200%
+////    annotationProcessor 'com.zhangyue.we:x2c-apt:1.1.2'
+////    implementation 'com.zhangyue.we:x2c-lib:1.0.6'
+//
+    // 微信基于mmap的高性能通用 key-value 组件
+    implementation 'com.tencent:mmkv:1.2.14'
+
+    // HTTPDNS是面向移动开发者推出的一款域名解析产品，具有域名防劫持、精准调度的特性
+    implementation('com.aliyun.ams:alicloud-android-httpdns:2.3.0') {
+        transitive true
+        exclude group: 'com.aliyun.ams', module: 'alicloud-android-sender'
+    }
+
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.9.1'
 
     // A transparent ui-block detection library for Android
     implementation 'com.github.markzhai:blockcanary-android:1.5.0'
 
     // A simple watchdog that detects Android ANRs
-    implementation 'com.github.anrwatchdog:anrwatchdog:1.3.0'
+    implementation 'com.github.anrwatchdog:anrwatchdog:1.4.0'
 }

@@ -2,8 +2,6 @@ package com.optimize.performance.net;
 
 import android.util.Log;
 
-import com.optimize.performance.utils.LogUtils;
-
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
@@ -30,6 +28,7 @@ public class OkHttpEventListener extends EventListener {
     };
 
     OkHttpEvent okHttpEvent;
+
     public OkHttpEventListener() {
         super();
         okHttpEvent = new OkHttpEvent();
@@ -38,7 +37,7 @@ public class OkHttpEventListener extends EventListener {
     @Override
     public void callStart(Call call) {
         super.callStart(call);
-        Log.i("lz","callStart");
+        Log.i("lz", "callStart");
     }
 
     @Override
@@ -137,10 +136,10 @@ public class OkHttpEventListener extends EventListener {
 
     @Override
     public void callFailed(Call call, IOException ioe) {
-        Log.i("lz","callFailed ");
+        Log.i("lz", "callFailed ");
         super.callFailed(call, ioe);
         okHttpEvent.apiSuccess = false;
         okHttpEvent.errorReason = Log.getStackTraceString(ioe);
-        Log.i("lz","reason "+okHttpEvent.errorReason);
+        Log.i("lz", "reason " + okHttpEvent.errorReason);
     }
 }

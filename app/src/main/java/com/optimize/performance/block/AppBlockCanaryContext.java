@@ -158,6 +158,6 @@ public class AppBlockCanaryContext extends BlockCanaryContext {
      * Block interceptor, developer may provide their own actions.
      */
     public void onBlock(Context context, BlockInfo blockInfo) {
-        Log.i("lz","blockInfo "+blockInfo.toString());
+        Log.i("lz", "blockInfo " + blockInfo.toString());
     }
 }

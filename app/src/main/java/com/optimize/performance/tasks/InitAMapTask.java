@@ -19,13 +19,18 @@ public class InitAMapTask extends Task {
 
     @Override
     public void run() {
-
-        mLocationClient = new AMapLocationClient(mContext);
-        mLocationClient.setLocationListener(mLocationListener);
-        mLocationOption = new AMapLocationClientOption();
-        mLocationOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Battery_Saving);
-        mLocationOption.setOnceLocation(true);
-        mLocationClient.setLocationOption(mLocationOption);
-        mLocationClient.startLocation();
+        try {
+            AMapLocationClient.updatePrivacyShow(mContext, true, true);
+            AMapLocationClient.updatePrivacyAgree(mContext, true);
+            mLocationClient = new AMapLocationClient(mContext);
+            mLocationClient.setLocationListener(mLocationListener);
+            mLocationOption = new AMapLocationClientOption();
+            mLocationOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Hight_Accuracy);
+            mLocationOption.setOnceLocation(true);
+            mLocationClient.setLocationOption(mLocationOption);
+            mLocationClient.startLocation();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

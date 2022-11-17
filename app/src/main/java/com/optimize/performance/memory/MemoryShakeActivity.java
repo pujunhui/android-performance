@@ -4,9 +4,10 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.optimize.performance.R;
 
@@ -21,19 +22,18 @@ public class MemoryShakeActivity extends AppCompatActivity implements View.OnCli
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             // 创造内存抖动
-            for (int index = 0; index <= 100; index++){
+            for (int index = 0; index <= 100; index++) {
                 String arg[] = new String[100000];
             }
-            mHandler.sendEmptyMessageDelayed(0,30);
+            mHandler.sendEmptyMessageDelayed(0, 30);
         }
     };
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_memory);
+        setContentView(R.layout.activity_memory_shake);
         findViewById(R.id.bt_memory).setOnClickListener(this);
-
     }
 
     @Override

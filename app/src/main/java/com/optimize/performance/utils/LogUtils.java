@@ -10,18 +10,18 @@ public class LogUtils {
 
     private static ExecutorService sExecutorService;
 
-    public static void setExecutor(ExecutorService executorService){
+    public static void setExecutor(ExecutorService executorService) {
         sExecutorService = executorService;
     }
 
-    public static final String TAG = "performance";
+    public static final String TAG = "pujh";
 
-    public static void i(String msg){
-        if(Utils.isMainProcess(PerformanceApp.getApplication())){
-            Log.i(TAG,msg);
+    public static void i(String msg) {
+        if (Utils.isMainProcess(PerformanceApp.getApplication())) {
+            Log.i(TAG, msg);
         }
         // 异步
-        if(sExecutorService != null){
+        if (sExecutorService != null) {
 //            sExecutorService.execute();
         }
     }

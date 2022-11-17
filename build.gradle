@@ -1,31 +1,8 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
-
-buildscript {
-
-    repositories {
-        google()
-        jcenter()
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:3.1.4'
-        classpath 'com.hujiang.aspectjx:gradle-android-plugin-aspectjx:2.0.0'
-
-        classpath 'me.ele:lancet-plugin:1.0.4'
-
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
-    }
-}
-
-allprojects {
-    repositories {
-        google()
-        jcenter()
-        maven { url 'https://dl.bintray.com/umsdk/release' }
-        maven {
-            url 'http://maven.aliyun.com/nexus/content/repositories/releases/'
-        }
-    }
+plugins {
+    id 'com.android.application' version '7.3.1' apply false
+    id 'com.android.library' version '7.3.1' apply false
+    id "io.github.wurensen.android-aspectjx" version "3.2.0" apply false
 }
 
 task clean(type: Delete) {

@@ -2,10 +2,6 @@ package com.optimize.performance;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.widget.TextView;
-
-import com.optimize.performance.utils.LogUtils;
-import com.optimize.performance.webview.BlankDetect;
 
 public class TestBlankActivity extends Activity {
 

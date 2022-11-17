@@ -7,6 +7,6 @@ public class InitBuglyTask extends Task {
 
     @Override
     public void run() {
-        CrashReport.initCrashReport(mContext, "注册时申请的APPID", false);
+        CrashReport.initCrashReport(mContext, "fb7f2e66ed", false);
     }
 }

@@ -14,7 +14,8 @@ public class BlankDetect {
 
     /**
      * 判断Bitmap是否都是一个颜色
-     * @param bitmap
+     *
+     * @param view
      * @return
      */
     public static boolean isBlank(View view) {
@@ -45,10 +46,11 @@ public class BlankDetect {
 
     /**
      * 从View获取转换到的Bitmap
+     *
      * @param view
      * @return
      */
-    private static Bitmap getBitmapFromView(View view){
+    private static Bitmap getBitmapFromView(View view) {
         Bitmap bitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(), Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);
         if (Build.VERSION.SDK_INT >= 11) {

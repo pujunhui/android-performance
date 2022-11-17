@@ -33,6 +33,7 @@ public class DispatcherExecutor {
 
     /**
      * 获取CPU线程池
+     *
      * @return
      */
     public static ThreadPoolExecutor getCPUExecutor() {
@@ -41,6 +42,7 @@ public class DispatcherExecutor {
 
     /**
      * 获取IO线程池
+     *
      * @return
      */
     public static ExecutorService getIOExecutor() {

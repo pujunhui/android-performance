@@ -10,21 +10,20 @@ import org.aspectj.lang.annotation.Aspect;
 @Aspect
 public class PerformanceAop {
 
-    @Around("call(* com.optimize.performance.PerformanceApp.**(..))")
+    @Around("call(* com.optimize.performance.PerformanceApp.init**(..))")
     public void getTime(ProceedingJoinPoint joinPoint) {
-        // 签名
         Signature signature = joinPoint.getSignature();
-        String name = signature.toShortString();
+        String name = signature.getName();
         long time = System.currentTimeMillis();
         try {
             joinPoint.proceed();
-        } catch (Throwable throwable) {
-            throwable.printStackTrace();
+        } catch (Throwable e) {
+            e.printStackTrace();
         }
-//        LogUtils.i(name + " cost " + (System.currentTimeMillis() - time));
+        LogUtils.i(name + " cost " + (System.currentTimeMillis() - time) + "ms");
     }
 
-    @Around("execution(* android.app.Activity.setContentView(..))")
+    @Around("call(* androidx.appcompat.app.AppCompatActivity.setContentView(..))")
     public void getSetContentViewTime(ProceedingJoinPoint joinPoint) {
         Signature signature = joinPoint.getSignature();
         String name = signature.toShortString();
@@ -36,7 +35,4 @@ public class PerformanceAop {
         }
         LogUtils.i(name + " cost " + (System.currentTimeMillis() - time));
     }
-
-
-
 }

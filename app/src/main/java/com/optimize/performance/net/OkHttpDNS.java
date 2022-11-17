@@ -36,7 +36,7 @@ public class OkHttpDNS implements Dns {
     @Override
     public List<InetAddress> lookup(String hostname) throws UnknownHostException {
         String ip = dnsService.getIpByHostAsync(hostname);
-        if(ip != null){
+        if (ip != null) {
             List<InetAddress> inetAddresses = Arrays.asList(InetAddress.getAllByName(ip));
             return inetAddresses;
         }

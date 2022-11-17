@@ -63,11 +63,10 @@ class DroidCardsView extends View {
     private ArrayList<DroidCard> mDroidCards = new ArrayList<DroidCard>();
 
     /**
-     *
-     * @param context           The app context.
-     * @param droids            The Droid objects associated with DroidCards.
-     * @param droidImageWidth   The width of each Droid image. Hardcoded in DroidCardsActivity.
-     * @param cardSpacing       The distance between the left edges of two adjacent cards.
+     * @param context         The app context.
+     * @param droids          The Droid objects associated with DroidCards.
+     * @param droidImageWidth The width of each Droid image. Hardcoded in DroidCardsActivity.
+     * @param cardSpacing     The distance between the left edges of two adjacent cards.
      */
     public DroidCardsView(Context context, Droid[] droids, float droidImageWidth,
                           float cardSpacing) {
@@ -101,7 +100,7 @@ class DroidCardsView extends View {
                 canvas.save();
                 // 指定绘制区域
 
-                canvas.clipRect(mCardLeft,0,mCardLeft+mCardSpacing,mDroidCards.get(i).getHeight());
+                canvas.clipRect(mCardLeft, 0, mCardLeft + mCardSpacing, mDroidCards.get(i).getHeight());
 
                 // Draw the card. Only the parts of the card that lie within the bounds defined by
                 // the clipRect() get drawn.
@@ -130,10 +129,10 @@ class DroidCardsView extends View {
         // Draw outer rectangle.
         paint.setAntiAlias(true);
         Rect cardRect = new Rect(
-                (int)left,
-                (int)top,
-                (int)left + (int) droidCard.getWidth(),
-                (int)top + (int) droidCard.getHeight()
+                (int) left,
+                (int) top,
+                (int) left + (int) droidCard.getWidth(),
+                (int) top + (int) droidCard.getHeight()
         );
         paint.setStyle(Paint.Style.STROKE);
         paint.setColor(Color.DKGRAY);

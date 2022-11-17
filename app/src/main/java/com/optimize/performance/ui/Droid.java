@@ -32,7 +32,7 @@ public class Droid {
     private int color;
 
     /**
-     *  The id of a drawable associated with a Droid.
+     * The id of a drawable associated with a Droid.
      */
     private int imageId;
 
@@ -48,7 +48,15 @@ public class Droid {
         this.imageId = imageId;
     }
 
-    public String getName() {return name;}
-    public int getColor() {return color;}
-    public int getAvatarId() {return imageId;}
+    public String getName() {
+        return name;
+    }
+
+    public int getColor() {
+        return color;
+    }
+
+    public int getAvatarId() {
+        return imageId;
+    }
 }

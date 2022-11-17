@@ -17,6 +17,6 @@ public class InitFrescoTask extends Task {
         listenerset.add(new FrescoTraceListener());
         ImagePipelineConfig config = ImagePipelineConfig.newBuilder(mContext).setRequestListeners(listenerset)
                 .build();
-        Fresco.initialize(mContext,config);
+        Fresco.initialize(mContext, config);
     }
 }
